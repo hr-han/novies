@@ -6,7 +6,8 @@ import Tabs from "./Tabs";
 const Stack = createStackNavigator();
 
 export default () => (
-    <Stack.Navigator mode="modal" screenOptions={{
+    <Stack.Navigator mode="modal"  screenOptions={{
+        headerTitleAlign: 'center',
         headerStyle: {
             backgroundColor: "black",
             borderBottomColor:"black",
