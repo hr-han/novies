@@ -65,28 +65,28 @@ const Slide = ({ id, title, backgroudImage, votes, overview, posterPath }) => (
     <BG source={{ uri: apiImage(backgroudImage) }}
     />
     <Content>
-      <Poster url={apiImage(posterPath)}/>
+      <Poster url={apiImage(posterPath)} />
       <Data>
-        <Title>{title.length > 30 ? `${title.slice(0,30)}...`:title}</Title>
+        <Title>{title.length > 30 ? `${title.slice(0, 30)}...` : title}</Title>
         <Votes>⭐ {votes}/10</Votes>
-        <Overview>{overview.length > 120 ? `${overview.slice(0, 120)}...`:overview}</Overview>
+        <Overview>{overview.length > 120 ? `${overview.slice(0, 120)}...` : overview}</Overview>
         <TouchableOpacity>
           <Button>
             <ButtonText>View details</ButtonText>
           </Button>
         </TouchableOpacity>
-        
+
       </Data>
     </Content>
   </Container>
 );
 
 Slide.propTypes = {
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    backgroudImage: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  backgroudImage: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired
 }
 
 export default Slide;
