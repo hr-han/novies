@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Poster from "../components/Poster";
 import Votes from "./Votes"
 import { apiImage } from "../api";
-import { trimText } from "../utils"
+import { trimText, formatDate } from "../utils"
 
 const Container = styled.View`
     padding:0 30px;
@@ -43,7 +43,7 @@ const Horizontal = ({ id, posterPath, title, overview, releaseDate}) => (
             <Poster url={posterPath} />
             <Data>
                 <Title>{trimText(title,30)}</Title>
-                {releaseDate ? (<ReleaseDate>{releaseDate}</ReleaseDate>):null}
+                {releaseDate ? (<ReleaseDate>{formatDate(releaseDate)}</ReleaseDate>):null}
                 <Overview>{trimText(overview,130)}</Overview>
             </Data>
         </Container>

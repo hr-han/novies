@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {Ionicons} from "@expo/vector-icons"
-import Tv from "../screens/Tv";
+import Tv from "../screens/TV";
 import Search from "../screens/Search";
 import Movies from "../screens/Movies";
 import Discovery from "../screens/Discovery";
@@ -44,8 +44,8 @@ export default ({ route, navigation }) => {
           borderTopColor: "black"
         }
       }}>
-        <Tabs.Screen name="Movies" component={Movies} />
         <Tabs.Screen name="TV" component={Tv} />
+        <Tabs.Screen name="Movies" component={Movies} />
         <Tabs.Screen name="Search" component={Search} />
         <Tabs.Screen name="Discovery" component={Discovery} />
       </Tabs.Navigator>
