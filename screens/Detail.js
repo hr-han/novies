@@ -33,7 +33,7 @@ export default ({
   navigation.setOptions({ title });
 
   return(
-    <ScrollContainer loadding={false} >
+    <ScrollContainer loading={false} >
       <Header>
         <BG source={{ uri: apiImage(backgroudImage, "")}}/>
         <Container>
