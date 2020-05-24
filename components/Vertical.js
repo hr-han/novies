@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native"
 import PropTypes from "prop-types"
 import { apiImage } from "../api";
 import Poster from "../components/Poster";
@@ -19,20 +20,26 @@ const Title = styled.Text`
 `;
 
 
-const Vertical = ({ id, posterPath, title, votes}) => (
-    <TouchableOpacity>
-        <Container>
-            <Poster url={posterPath}/>
-            <Title>{trimText(title, 10)}</Title>
-            <Votes votes={votes}/>
-        </Container>
-    </TouchableOpacity>
-)
+const Vertical = ({ id, posterPath, title, votes}) => {
+    const navigation = useNavigation();
+    const goToDetail = () => {
+        navigation.navigate("Detail", { id, title, votes, posterPath });
+    }
+    return (
+        <TouchableOpacity onPress={goToDetail}>
+            <Container>
+                <Poster url={posterPath} />
+                <Title>{trimText(title, 10)}</Title>
+                {votes > 0 && (<Votes votes={votes} />)}
+            </Container>
+        </TouchableOpacity>
+    )
+}
 
 Vertical.propTypes = {
-    posterPath: PropTypes.string.isRequired,
+    posterPath: PropTypes.string,
     title: PropTypes.string.isRequired,
     votes: PropTypes.number.isRequired
-}
+};
 
 export default Vertical;

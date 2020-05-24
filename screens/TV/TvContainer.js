@@ -18,9 +18,9 @@ export default () => {
 
     const getData = async () => {
         const [today, todayError] = await tvApi.today();
-        console.log(today);
-        
         const [thisWeek, thisWeekError] = await tvApi.thisWeek();
+        console.log(thisWeek);
+        
         const [topRated, topRatedError] = await tvApi.topRated();
         const [popular, popularError] = await tvApi.popular();
 
@@ -41,5 +41,5 @@ export default () => {
         getData();
     }, []);
 
-    return <TvPresenter {...shows} />;
+    return <TvPresenter refreshFn={getData} {...shows} />;
 };

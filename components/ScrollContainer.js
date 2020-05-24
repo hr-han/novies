@@ -1,20 +1,37 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { ScrollView, ActivityIndicator } from "react-native"
+import { ScrollView, ActivityIndicator, RefreshControl } from "react-native"
 
-const ScrollContainer = ({loading, children}) => (
-    <ScrollView style={{ backgroundColor: "black" }}
-        contentContainerStyle={{ flexGrow: 1, 
-        justifyContent: loading ? "center" : "flex-start" }}>
-        {loading ? (
-            <ActivityIndicator color="white" size="large" />
-        ) : (children)} 
-    </ScrollView>
-)
+const ScrollContainer = ({loading, children, contentContainerStyle, refreshFn}) => {
+    const [refreshing, setRefreshing] = useState(false); 
+    const onRefresh = async() => {
+        setRefreshing(true);
+        await refreshFn();
+        setRefreshing(false);
+    }
+    return (
+        <ScrollView
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} titleColor={"white"} />
+            }
+            style={{ backgroundColor: "black" }}
+            contentContainerStyle={{
+                flex: loading ? 1 : 0,
+                justifyContent: loading ? "center" : "flex-start",
+                ...contentContainerStyle
+            }}>
+            {loading ? (
+                <ActivityIndicator color="white" size="large" />
+            ) : (children)}
+        </ScrollView>
+    )
+}
 
 ScrollContainer.propTypes = {
     loading: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    contentContainerStyle: PropTypes.object,
+    refreshFn: PropTypes.func
 }
 
 export default ScrollContainer;
