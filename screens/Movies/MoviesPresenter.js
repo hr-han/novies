@@ -21,7 +21,7 @@ export default ({ refreshFn, loading, nowPlaying, popular, upcoming }) => (
             title={movie.title}
             overview={movie.overview}
             votes={movie.vote_average}
-            backgroudImage={movie.backdrop_path || ""}
+            backgroundImage={movie.backdrop_path || ""}
             posterPath={movie.poster_path} />
         ))}
       </SliderContainer>

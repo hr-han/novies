@@ -21,7 +21,8 @@ export default ({ refreshFn, loading, popular, topRated, today, thisWeek}) => (
                         id={show.id}
                         title={show.name}
                         votes={show.vote_average}
-                        posterPath={show.poster_path} />
+                        posterPath={show.poster_path}
+                        isTv={true} />
                 )}
             </HorizontalSlider>
             <SliderContainer title={"ThisWeek Shows"}>
@@ -30,8 +31,9 @@ export default ({ refreshFn, loading, popular, topRated, today, thisWeek}) => (
                         title={show.name}
                         overview={show.overview}
                         votes={show.vote_average}
-                        backgroudImage={show.backdrop_path || ""}
-                        posterPath={show.poster_path} />
+                        backgroundImage={show.backdrop_path || ""}
+                        posterPath={show.poster_path}
+                        isTv={true} />
                 ))}
             </SliderContainer>
             <HorizontalSlider title={"Top Rated"}>
@@ -40,7 +42,8 @@ export default ({ refreshFn, loading, popular, topRated, today, thisWeek}) => (
                         id={show.id}
                         title={show.name}
                         votes={show.vote_average}
-                        posterPath={show.poster_path} />
+                        posterPath={show.poster_path}
+                        isTv={true} />
                 )}
             </HorizontalSlider>
             <List title={"Airing Today"}>
@@ -49,7 +52,8 @@ export default ({ refreshFn, loading, popular, topRated, today, thisWeek}) => (
                         id={show.id}
                         title={show.name}
                         posterPath={show.poster_path}
-                        overview={show.overview} />
+                        overview={show.overview}
+                        isTv={true} />
                 ))}
             </List>
         </Container>

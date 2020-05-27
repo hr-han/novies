@@ -38,10 +38,10 @@ const ReleaseDate = styled.Text`
 `;
 
 
-const Horizontal = ({ id, posterPath, title, overview, releaseDate}) => {
+const Horizontal = ({ id, posterPath, title, overview, releaseDate, isTv = false}) => {
     const navigation = useNavigation();
     const goToDetail = () => {
-        navigation.navigate("Detail", { id, title, overview, posterPath, releaseDate });
+        navigation.navigate("Detail", { id, title, overview, posterPath, releaseDate, isTv });
     }
 
     return (

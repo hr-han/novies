@@ -61,15 +61,15 @@ const ButtonText = styled.Text`
   color:white;
 `;
 
-const Slide = ({ id, title, backgroudImage, votes, overview, posterPath }) => {
+const Slide = ({ id, title, backgroundImage, votes, overview, posterPath, isTv=false }) => {
   const navigation = useNavigation();
   const goToDetail = () => {
-    navigation.navigate("Detail", { id, title, posterPath, overview, votes, backgroudImage})
+    navigation.navigate("Detail", { id, title, posterPath, overview, votes, backgroundImage, isTv})
   }
 
   return (
     <Container>
-      <BG source={{ uri: apiImage(backgroudImage) }}
+      <BG source={{ uri: apiImage(backgroundImage) }}
       />
       <Content>
         <Poster url={posterPath} />
@@ -94,7 +94,7 @@ const Slide = ({ id, title, backgroudImage, votes, overview, posterPath }) => {
 Slide.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  backgroudImage: PropTypes.string.isRequired,
+  backgroundImage: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   overview: PropTypes.string.isRequired,
   posterPath: PropTypes.string.isRequired

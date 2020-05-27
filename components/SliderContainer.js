@@ -11,7 +11,7 @@ const Container = styled.View``;
 
 const SwiperContainer = styled.View`
     width:100%;
-    height:${HEIGHT / 4}px;
+    height:${HEIGHT / 3}px;
     margin-bottom: 50px;
 `;
 const TitleContainer = styled.View`
