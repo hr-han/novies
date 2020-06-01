@@ -3,7 +3,7 @@ import { AppLoading } from "expo";
 import { Image, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native"
 import { Asset } from 'expo-asset';
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import Stack from './navigation/Stack';
 
@@ -26,7 +26,7 @@ export default function App() {
       "https://images.unsplash.com/photo-1538152911114-73f1aa6d6128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
       require("./assets/splash.png")
     ]);
-    const fonts = cacheFonts([Ionicons.font])
+    const fonts = cacheFonts([Ionicons.font, FontAwesome.font])
     console.log(fonts);
     return Promise.all([...images, ...fonts])
   }

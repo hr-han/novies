@@ -1,0 +1,28 @@
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import styled from "styled-components/native"
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
+
+const Container = styled.View`
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+
+`;
+
+const Text = styled.Text`
+    font-weight: 600;
+    margin:0 10px;
+
+`;
+
+const Link = ({ onPress, text, icon }) => (
+  <TouchableOpacity onPress={onPress}>
+    <Container>
+      <FontAwesome name={icon} color={"white"} size={22} />
+      <Text style={{ color: "white" }}>{text}</Text>
+    </Container>
+  </TouchableOpacity>
+);
+
+export default Link;

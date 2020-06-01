@@ -6,6 +6,8 @@ import { apiImage } from "../../api";
 import Poster from "../../components/Poster";
 import Votes from "../../components/Votes"
 import { formatDate } from "../../utils"
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Link from "../../components/Detail/Link";
 
 const BG = styled.Image`
   width:100%;
@@ -60,68 +62,122 @@ const DataValue = styled.Text`
 
 
 
-export default ({ result, loading }) => (
-    <ScrollContainer loading={false} contentContainerStyle={{paddingBottom:80}}>
-        <Header>
-            <BG source={{ uri: apiImage(result.backgroundImage, "-") }} />
-            <Container>
-                <Poster url={result.posterPath} />
-                <Info>
-                    <Title>{result.title}</Title>
-                    {result.votes && <Votes votes={result.votes} />}
-                </Info>
-            </Container>
-        </Header>
-        <Data>
-            {result.overview &&
-                <>
-                    <DataName>Overview</DataName>
-                    <DataValue>{result.overview}</DataValue>
-                </>
+export default ({ result, loading, openBrowser }) => (
+  <ScrollContainer
+    loading={false}
+    contentContainerStyle={{ paddingBottom: 80 }}
+  >
+    <Header>
+      <BG source={{ uri: apiImage(result.backgroundImage, "-") }} />
+      <Container>
+        <Poster url={result.posterPath} />
+        <Info>
+          <Title>{result.title}</Title>
+          {result.votes ? <Votes votes={result.votes} />:null}
+        </Info>
+      </Container>
+    </Header>
+    <Data>
+      {result.overview ? (
+        <>
+          <DataName>Overview</DataName>
+          <DataValue>{result.overview}</DataValue>
+        </>
+      ) : null}
+      {loading && (
+        <ActivityIndicator
+          color="white"
+          size="small"
+          style={{ marginTop: 30 }}
+        />
+      )}
+      {result.spoken_languages ? (
+        <>
+          <DataName>Languages</DataName>
+          <DataValue>
+            {result.spoken_languages.map(
+              (l, i) =>
+                `${
+                  i === result.spoken_languages.length - 1
+                    ? `${l.name}`
+                    : `${l.name}, `
+                } `
+            )}
+          </DataValue>
+        </>
+      ) : null}
+      {result.release_date ? (
+        <>
+          <DataName>Release Date</DataName>
+          <DataValue>{formatDate(result.release_date)}</DataValue>
+        </>
+      ): null}
+      {result.status ? (
+        <>
+          <DataName>Status</DataName>
+          <DataValue>{result.status}</DataValue>
+        </>
+      ): null}
+      {result.runtime ? (
+        <>
+          <DataName>Runtime</DataName>
+          <DataValue>⏰{result.runtime} minutes</DataValue>
+        </>
+      ): null}
+      {result.first_air_date ? (
+        <>
+          <DataName>First Air Date</DataName>
+          <DataValue>{formatDate(result.first_air_date)}</DataValue>
+        </>
+      ): null}
+      {result.genres ? (
+        <>
+          <DataName>Genres</DataName>
+          <DataValue>
+            {result.genres.map(
+              (g, i) =>
+                `${
+                  i === result.genres.length - 1 ? `${g.name}` : `${g.name}, `
+                }`
+            )}
+          </DataValue>
+        </>
+      ): null}
+      {result.number_of_episodes ? (
+        <>
+          <DataName>Seasons / Episodes</DataName>
+          <DataValue>
+            {result.number_of_seasons} / {result.number_of_episodes}
+          </DataValue>
+        </>
+      ): null}
+      {result.imdb_id ? (
+        <>
+          <DataName>Links</DataName>
+          <Link
+            onPress={() =>
+              openBrowser(`https://www.imdb.com/title/${result.imdb_id}`)
             }
-            {loading && <ActivityIndicator color="white" size="small" style={{marginTop:30}}/>}
-            {result.spoken_languages && 
-                <>
-                    <DataName>Languages</DataName>
-                <DataValue>{result.spoken_languages.map((l, i) => `${i === result.spoken_languages.length - 1 ? `${l.name}` : `${l.name}, `} `)}</DataValue>
-                </>
-            }
-            {result.release_date && 
-                <>
-                    <DataName>Release Date</DataName>
-                    <DataValue>{formatDate(result.release_date)}</DataValue>
-                </>
-            }
-            {result.status &&
-                <>
-                    <DataName>Status</DataName>
-                    <DataValue>{result.status}</DataValue>
-                </>
-            }
-            {result.runtime &&
-                <>
-                    <DataName>Runtime</DataName>
-                    <DataValue>⏰{result.runtime} minutes</DataValue>
-                </>
-            }
-            {result.first_air_date &&
-                <>
-                    <DataName>First Air Date</DataName>
-                    <DataValue>{formatDate(result.first_air_date)}</DataValue>
-                </>
-            }
-            {result.genres &&
-                <>
-                    <DataName>Genres</DataName>
-                <DataValue>{result.genres.map((g, i) => `${i === result.genres.length - 1 ? `${g.name}` : `${g.name}, `}`)}</DataValue>
-                </>
-            }
-            {result.number_of_episodes &&
-                <>
-                    <DataName>Seasons / Episodes</DataName>
-                <DataValue>{result.number_of_seasons} / {result.number_of_episodes}</DataValue>
-                </>
-            }
-        </Data>
-    </ScrollContainer>
-)
+            text="IMDB"
+            icon={"imdb"}
+          />
+        </>
+      ): null}
+      {result.videos.results?.length > 0 ? (
+        <>
+          <DataName>Videos</DataName>
+          {result.videos.results.map(video => (
+            <Link
+              key={video.id}
+              text={video.name}
+              icon={"youtube-play"}
+              onPress={() =>
+                openBrowser(`https://www.youtube.com/watch?v=${video.key}`)
+              }
+            />
+          ))}
+        </>
+      ): null}
+    </Data>
+  </ScrollContainer>
+);

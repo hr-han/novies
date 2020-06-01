@@ -1,4 +1,5 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
+import * as WebBrowser from "expo-web-browser";
 import DetailPresenter from "./DetailPresenter";
 import { getProvidesAudioData } from "expo/build/AR";
 import { movieApi, tvApi } from "../../api";
@@ -19,7 +20,10 @@ export default ({
             backgroundImage,
             posterPath,
             votes,
-            overview
+            overview,
+            videos:{
+                result: []
+            }
         }
     });
     
@@ -47,5 +51,11 @@ export default ({
         getData();
     },[id])
 
-    return <DetailPresenter {...detail} />
+    const openBrowser = async(url) => {
+        await WebBrowser.openBrowserAsync(url);
+    }
+
+    console.log(detail.result.videos.results);
+    
+    return <DetailPresenter openBrowser={openBrowser} {...detail} />;
 } 
