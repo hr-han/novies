@@ -54,8 +54,6 @@ export default ({
     const openBrowser = async(url) => {
         await WebBrowser.openBrowserAsync(url);
     }
-
-    console.log(detail.result.videos.results);
     
     return <DetailPresenter openBrowser={openBrowser} {...detail} />;
 } 

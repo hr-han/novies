@@ -27,7 +27,6 @@ export default function App() {
       require("./assets/splash.png")
     ]);
     const fonts = cacheFonts([Ionicons.font, FontAwesome.font])
-    console.log(fonts);
     return Promise.all([...images, ...fonts])
   }
   const onFinish = async () => setIsReady(true)

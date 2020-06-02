@@ -62,7 +62,7 @@ Horizontal.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     overview: PropTypes.string.isRequired,
-    posterPath: PropTypes.string.isRequired,
+    posterPath: PropTypes.string,
     releaseDate: PropTypes.string
 }
 
