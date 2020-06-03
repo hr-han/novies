@@ -13,8 +13,9 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
+    "primaryColor": "#000000",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -22,8 +23,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hrhan.novis",
+      "buildNumber": "1.0.0"
     },
-    "description": ""
+    "android": {
+      "package": "com.hrhan.novis",
+      "versionCode": 1
+    },
+    "description": "",
+    "androidStatusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#000000"
+    },
+    "androidNavigationBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#000000"
+    }
   }
 }
